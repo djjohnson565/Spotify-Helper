@@ -12,6 +12,10 @@ Please refer to Spotify's official website and terms of service for more informa
 
 ## Patch Notes
 
-### v0.0.0
+### v0.0.1 5/21/2025
+
+- Prompts user for an artist and will display found artist and top 10 tracks.
+
+### v0.0.0 5/20/2025
 
 - Initial commit.
