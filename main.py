@@ -1,3 +1,7 @@
+# Spotify-Helper
+# Created by github.com/djjohnson565
+# https://github.com/djjohnson565/Spotify-Helper
+
 from dotenv import load_dotenv
 import os
 import base64
@@ -5,6 +9,8 @@ from requests import post, get
 import json
 from searches import *
 
+
+# Create token
 def get_token(client_id, client_secret):
     auth_string = client_id + ":" + client_secret
     auth_bytes = auth_string.encode("utf-8")
@@ -21,6 +27,8 @@ def get_token(client_id, client_secret):
     token = json_result["access_token"]
     return token
 
+
+# Create authentication header for the token
 def get_auth_header(token):
     return {"Authorization": "Bearer " + token}
 
@@ -36,6 +44,7 @@ def main():
     print(f"Artist Found: {search_result['name']}")
     artist_id = search_result["id"]
     songs = get_songs_by_artist(get_auth_header(token), artist_id)
+    print(f"Type of songs: {type(songs)}")
     for i, song, in enumerate(songs):
         print(f"{i + 1}. {song['name']}")
 
