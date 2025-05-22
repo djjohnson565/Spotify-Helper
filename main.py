@@ -8,6 +8,23 @@ import base64
 from requests import post, get
 import json
 from searches import *
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+from autoqueues import *
+import time
+
+
+def program_loop(sp, prev_track):
+    cur_track = get_current_track(sp.current_playback())[2]
+    if(cur_track != prev_track):
+        prev_track = cur_track
+        auto_queue(sp, cur_track)
+    else:
+        cur_track = get_current_track(sp.current_playback())
+        print(f"Track: {cur_track[0]}")
+        print(f"Artist: {cur_track[1]}")
+        print(f"URI: {cur_track[2]}")
+        time.sleep(5)
 
 
 # Create token
@@ -32,21 +49,27 @@ def get_token(client_id, client_secret):
 def get_auth_header(token):
     return {"Authorization": "Bearer " + token}
 
+
 def main():
+
     load_dotenv()
     client_id = os.getenv("CLIENT_ID")
     client_secret = os.getenv("CLIENT_SECRET")
     token = get_token(client_id, client_secret)
-    artist = input("What artist do you want to search?: ")
-    search_result = search_for_artist(get_auth_header(token), artist)
-    if(search_result == None):
-        return
-    print(f"Artist Found: {search_result['name']}")
-    artist_id = search_result["id"]
-    songs = get_songs_by_artist(get_auth_header(token), artist_id)
-    print(f"Type of songs: {type(songs)}")
-    for i, song, in enumerate(songs):
-        print(f"{i + 1}. {song['name']}")
+
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+    client_id = os.getenv("CLIENT_ID"),
+    client_secret = os.getenv("CLIENT_SECRET"),
+    redirect_uri="http://127.0.0.1:8000/callback",
+    scope="user-read-playback-state%20user-modify-playback-state"
+    ))
+
+    run = True
+    prev_track = None
+
+    # You must send an interrupt (Ctrl+C) to kill the program in terminal
+    while(run):
+        program_loop(sp, prev_track)
 
 if __name__ == "__main__":
     main()

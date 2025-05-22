@@ -27,20 +27,21 @@ CLIENT_SECRET = "YOUR CLIENT SECRET"
 REDIRECT_URI = "http://127.0.0.1:8000/callback"
 ```
 
+### Authenticate Your App
+Visit this link so Spotify-Helper can work alongside your Spotify account.
+```
+https://accounts.spotify.com/authorize?client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=YOUR_REDIRECT_URI&scope=user-read-playback-state%20user-modify-playback-state&show_dialog=true
+
+```
+
 ### You Are Good To Go!
 Have fun playing around with Spotify-Helper!
 
 ## Patch Notes
 
-### v0.0.2 5/22/2025
+### v0.1.0 5/22/2025
 
-- Setup instructions
-- Improved documentation
+First production release!
 
-### v0.0.1 5/21/2025
-
-- Prompts user for an artist and will display found artist and top 10 tracks.
-
-### v0.0.0 5/20/2025
-
-- Initial commit.
+- Please read the setup instructions
+- Can auto-queue songs from a predefined dictionary (Ex. "We Will Rock You / We Are The Champions")
