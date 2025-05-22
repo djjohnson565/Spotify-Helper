@@ -2,6 +2,8 @@
 
 Spotify-Helper is a tool designed to work alongside Spotify. It is currently in development, and new features will be added and listed here as they become available.
 
+![alt text](./images/logo.png "Spotify-Helper")
+
 ## Disclaimer
 
 This software is **not affiliated with**, **endorsed by**, or **sponsored by Spotify, Inc.**. It is an independent project created by [djjohnson565](https://github.com/djjohnson565).  
