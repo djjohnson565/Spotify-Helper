@@ -1,4 +1,4 @@
-![alt text](./images/logo.png "Spotify-Helper") 
+# ![alt text](./images/logo.png "Spotify-Helper") 
 
 # Spotify-Helper
 
